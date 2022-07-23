@@ -1,5 +1,6 @@
 import { setupGround } from './ground.js'
 import { updateGround } from '/ground.js'
+import { updateSpace, setupSpace } from '/Spaceboi.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 42
@@ -25,6 +26,7 @@ function update(time) {
     const delta = time - lastTime
     
     updateGround(delta, speedScale)
+    updateSpace(delta,speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
 
@@ -46,6 +48,7 @@ function handleStart() {
     speedScale = 1
     score = 0
     setupGround()
+    setupSpace()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }
