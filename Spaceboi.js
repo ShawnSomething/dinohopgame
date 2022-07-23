@@ -1,6 +1,6 @@
 const spaceElem = document.querySelector("[data-space]")
-const JUMP_SPEED = .45
-const GRAVITY = .011
+const JUMP_SPEED = 0.45
+const GRAVITY = 0.011
 const SPACE_FRAME_COUNT = 2
 const FRAME_TIME = 120
 
@@ -23,9 +23,10 @@ function handleRun(delta, speedScale) {
         spaceElem.src = '/space boi idle.png'
         return
     }
+    
     if (currentFrameTime >= FRAME_TIME) {
        spaceFrame = (spaceFrame + 1) % SPACE_FRAME_COUNT
-       spaceElem.src = '/spaceboi-run-${spaceFrame}.png'
+       spaceElem.src = `/spaceboi-run-${spaceFrame}.png`
        currentFrameTime -= FRAME_TIME
     }
     currentFrameTime += delta * speedScale
