@@ -8,14 +8,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 10vh;
+    min-height: 100vh;
 }
 
 .world {
     overflow: hidden;
     position: relative;
-    width: 100%;
-    height: 300px;
 }
 
 .score {
@@ -29,8 +27,8 @@ body {
     position: absolute;
     font-size: 5vmin;
     top: 50%;
-    left: 30%;
-    transform: translate (-50%, -30%);
+    left: 50%;
+    transform: translate (-50%, -50%);
 }
 
 .hide {
@@ -38,17 +36,24 @@ body {
 }
 
 .ground {
-    --left: 0
+    --left: 0;
     position: absolute;
-    width: 87%;
+    width: 100%;
     bottom: 0;
     left: calc(var(--left)* 1%);
 }
 
 .space {
-    --bottom: 0
+    --bottom: 0;
     position: absolute;
     left: 1%;
+    height: 30%;
+    bottom: calc(var(--bottom)* 1%);
+}
+
+.monster {
+    position: absolute;
+    left: calc(var(--left)* 1%);
     height: 15%;
-    bottom: calc(v(--bottom)* 1%);
+    bottom: 0;
 }
