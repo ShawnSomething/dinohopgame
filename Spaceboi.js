@@ -2,7 +2,7 @@ import { getCustomProperty, incrementCustomProperty, setCustomProperty } from ".
 
 const spaceElem = document.querySelector("[data-space]")
 const JUMP_SPEED = 0.45
-const GRAVITY = 0.0015
+const GRAVITY = 0.0014
 const SPACE_FRAME_COUNT = 2
 const FRAME_TIME = 120
 

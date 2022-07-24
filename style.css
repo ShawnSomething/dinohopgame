@@ -54,6 +54,6 @@ body {
 .monster {
     position: absolute;
     left: calc(var(--left)* 1%);
-    height: 35%;
+    height: 29%;
     bottom: 0;
 }

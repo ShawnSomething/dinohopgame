@@ -19,7 +19,7 @@ export function updateMonster(delta, speedScale) {
         if (getCustomProperty(monster, "--left") <= -100) {
             monster.remove()
         }
-    })
+    })  
 
     if(nextMonsterTime <= 0) {
         createMonster()
