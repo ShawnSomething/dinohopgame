@@ -3,7 +3,7 @@ import { updateGround } from '/ground.js'
 import { updateSpace, setupSpace } from '/Spaceboi.js'
 
 const WORLD_WIDTH = 100
-const WORLD_HEIGHT = 42
+const WORLD_HEIGHT = 43
 const SPEED_SCALE_INCREASE = .00001
 
 const worldElem = document.querySelector('[data-world]')

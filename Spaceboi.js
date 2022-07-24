@@ -1,16 +1,23 @@
+import { getCustomProperty, incrementCustomProperty, setCustomProperty } from "./updateCustomProperty.js"
+
 const spaceElem = document.querySelector("[data-space]")
 const JUMP_SPEED = 0.45
-const GRAVITY = 0.011
+const GRAVITY = 0.0015
 const SPACE_FRAME_COUNT = 2
 const FRAME_TIME = 120
 
 let isJumping
 let spaceFrame
 let currentFrameTime
+let yVelocity
 export function setupSpace() {
     isJumping = false
     spaceFrame = 0
     currentFrameTime = 0
+    yVelocity = 0
+    setCustomProperty(spaceElem, "--bottom", 0  )
+    document.removeEventListener("keydown", onJump)
+    document.addEventListener("keydown", onJump)
 }
 
 export function updateSpace(delta, speedScale) {
@@ -20,7 +27,7 @@ export function updateSpace(delta, speedScale) {
 
 function handleRun(delta, speedScale) {
     if (isJumping) {
-        spaceElem.src = '/space boi idle.png'
+        spaceElem.src = '/space boi jump.png'
         return
     }
     
@@ -33,5 +40,21 @@ function handleRun(delta, speedScale) {
 }
 
 function handleJump(delta) {
+    if (!isJumping) return
 
+    incrementCustomProperty (spaceElem, "--bottom", yVelocity * delta)
+    
+    if (getCustomProperty(spaceElem, "--bottom") <=0) {
+        setCustomProperty (spaceElem, "--bottom", 0)
+        isJumping = false
+    }
+
+    yVelocity -= GRAVITY * delta
+}
+
+function onJump(e) {
+    if (e.code !== "Space" || isJumping) return
+
+    yVelocity = JUMP_SPEED
+    isJumping = true
 }
