@@ -1,7 +1,7 @@
 import { setupGround } from './ground.js'
 import { updateGround } from '/ground.js'
-import { updateSpace, setupSpace } from '/Spaceboi.js'
-import { updateMonster, setupMonster } from '/Monster.js'
+import { updateSpace, setupSpace, getSpaceRect, setSpaceLose } from '/Spaceboi.js'
+import { updateMonster, setupMonster, getMonsterRects } from '/Monster.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 43
@@ -31,9 +31,24 @@ function update(time) {
     updateMonster(delta, speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
+    if (checkLose()) return handleLose()
 
     lastTime = time
     window.requestAnimationFrame(update)
+}
+
+function checkLose() {
+    const spaceRect = getSpaceRect()
+    return getMonsterRects().some(rect => isCollision(rect, spaceRect))
+}
+
+function isCollision(rect1, rect2) {
+    return (
+        rect1.left < rect2.right && 
+        rect1.top < rect2.bottom && 
+        rect1.right > rect2.left && 
+        rect1.bottom > rect2.top
+    )
 }
 
 function updateSpeedScale(delta) {
@@ -54,6 +69,14 @@ function handleStart() {
     setupMonster()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
+}
+
+function handleLose() {
+    setSpaceLose()
+    setTimeout(() => {
+        document.addEventListener("keydown", handleStart, {once: true})
+        startScreenElem.classList.remove("hide")
+    }, 100)
 }
 
 function setPixelToWorldScale() {

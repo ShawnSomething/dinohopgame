@@ -25,6 +25,14 @@ export function updateSpace(delta, speedScale) {
     handleJump(delta)
 }  
 
+export function getSpaceRect() {
+    return spaceElem.getBoundingClientRect()
+}
+
+export function setSpaceLose () {
+    spaceElem.src = '/space boi lose.png'
+}
+
 function handleRun(delta, speedScale) {
     if (isJumping) {
         spaceElem.src = '/space boi jump.png'

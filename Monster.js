@@ -8,6 +8,9 @@ const worldElem = document.querySelector("[data-world]")
 let nextMonsterTime
 export function setupMonster() {
     nextMonsterTime = MONSTER_INTERVAL_MIN
+    document.querySelectorAll("[data-monster]").forEach(monster => {
+        monster.remove()
+    })
 }
 
 export function updateMonster(delta, speedScale) {
@@ -23,6 +26,12 @@ export function updateMonster(delta, speedScale) {
         nextMonsterTime = randomNumberBetween(MONSTER_INTERVAL_MIN, MONSTER_INTERVAL_MAX) / speedScale
     }
     nextMonsterTime -= delta
+}
+
+export function getMonsterRects() {
+    return [...document.querySelectorAll('[data-monster]')].map(monster => {
+        return monster.getBoundingClientRect()
+    })
 }
 
 function createMonster() {
