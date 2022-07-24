@@ -1,6 +1,7 @@
 import { setupGround } from './ground.js'
 import { updateGround } from '/ground.js'
 import { updateSpace, setupSpace } from '/Spaceboi.js'
+import { updateMonster, setupMonster } from '/Monster.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 43
@@ -27,6 +28,7 @@ function update(time) {
     
     updateGround(delta, speedScale)
     updateSpace(delta,speedScale)
+    updateMonster(delta, speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
 
@@ -49,6 +51,7 @@ function handleStart() {
     score = 0
     setupGround()
     setupSpace()
+    setupMonster()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }

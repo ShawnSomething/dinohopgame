@@ -23,7 +23,7 @@ export function setupSpace() {
 export function updateSpace(delta, speedScale) {
     handleRun(delta, speedScale)
     handleJump(delta)
-}
+}  
 
 function handleRun(delta, speedScale) {
     if (isJumping) {
