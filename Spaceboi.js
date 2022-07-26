@@ -61,8 +61,8 @@ function handleJump(delta) {
 }
 
 function onJump(e) {
-    if (e.code !== "Space") return
-
+    if (e.code !== "Space") return // taking away "|| isJumping" makes it so I can have infinite jumps, but now I need a limit
+    
     yVelocity = JUMP_SPEED
     isJumping = true
 
