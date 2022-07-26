@@ -66,6 +66,4 @@ function onJump(e) {
     yVelocity = JUMP_SPEED
     isJumping = true
 
-    if(isJumping = true) return
-
 }
