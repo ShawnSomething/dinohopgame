@@ -25,6 +25,7 @@ export function setupSpace() {
 export function updateSpace(delta, speedScale) {
     handleRun(delta, speedScale)
     handleJump(delta)
+    handleCount (speedScale)
 }  
 
 export function getSpaceRect() {
@@ -60,7 +61,20 @@ function handleJump(delta) {
     }
 
     yVelocity -= GRAVITY * delta
+
 }
+
+function handleCount(jumpCount) {
+    if ("Space") return
+
+    incrementCustomProperty (spaceElem, "--bottom", jumpCount + 1)
+
+    if(jumpCount > 2) return
+    
+    yVelocity = GRAVITY + 1
+    jumpCount = - 2
+}
+//this isn't logging the way I want, it's not counting the Jumps...
 
 function onJump(e) {
     if (e.code !== "Space") return 
@@ -68,14 +82,9 @@ function onJump(e) {
 
     yVelocity = JUMP_SPEED
     isJumping = true
-    jumpCount = + 1
 
     if ("Space") return
     e.code !== "Space" || isJumping
     // ok, this limits it back to only being able to use the space key
 
-    if (jumpCount >= 2) return
-    yVelocity = GRAVITY + 1
-    jumpCount = -2
-    // trying to see if I can use jumpCount as a limiter, when it gets to 2, it will increase the GRAVITY and Rest the jumpCount to 0 so double jump can be executed again
 }
