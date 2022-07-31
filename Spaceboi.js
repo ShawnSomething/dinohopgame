@@ -10,22 +10,20 @@ let isJumping
 let spaceFrame
 let currentFrameTime
 let yVelocity
-let jumpCount
 export function setupSpace() {
     isJumping = false
-    jumpCount = 0
     spaceFrame = 0
     currentFrameTime = 0
     yVelocity = 0
     setCustomProperty(spaceElem, "--bottom", 0  )
     document.removeEventListener("keydown", onJump)
     document.addEventListener("keydown", onJump)
+
 }
 
 export function updateSpace(delta, speedScale) {
     handleRun(delta, speedScale)
     handleJump(delta)
-    handleCount (speedScale)
 }  
 
 export function getSpaceRect() {
@@ -64,27 +62,11 @@ function handleJump(delta) {
 
 }
 
-function handleCount(jumpCount) {
-    if ("Space") return
-
-    incrementCustomProperty (spaceElem, "--bottom", jumpCount + 1)
-
-    if(jumpCount > 2) return
-    
-    yVelocity = GRAVITY + 1
-    jumpCount = - 2
-}
-//this isn't logging the way I want, it's not counting the Jumps...
 
 function onJump(e) {
-    if (e.code !== "Space") return 
-    // taking away "|| isJumping" makes it so I can have infinite jumps, but now I need a limit
+    if (e.code !== "Space" || isJumping) return 
 
     yVelocity = JUMP_SPEED
     isJumping = true
-
-    if ("Space") return
-    e.code !== "Space" || isJumping
-    // ok, this limits it back to only being able to use the space key
 
 }
